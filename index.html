@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ⚡>
   <head>
     <meta charset="utf-8">
@@ -25,6 +26,49 @@
     
   </head>
   <body>
+        <amp-animation id="showAnim" layout="nodisplay">
+			<script type="application/json">
+				{
+					"duration": "500ms",
+					"fill": "both",
+					"iterations": "1",
+					"direction": "alternate",
+					"animations": [{
+						"selector": "#scrollToTopButton",
+						"keyframes": [{
+							"opacity": "1",
+							"visibility": "visible"
+						}]
+					}]
+				}
+			</script>
+		</amp-animation>
+
+		<amp-animation id="hideAnim" layout="nodisplay">
+			<script type="application/json">
+				{
+					"duration": "500ms",
+					"fill": "both",
+					"iterations": "1",
+					"direction": "alternate",
+					"animations": [{
+						"selector": "#scrollToTopButton",
+						"keyframes": [{
+							"opacity": "0",
+							"visibility": "hidden"
+						}]
+					}]
+				}
+			</script>
+		</amp-animation>
+
+		<!-- Scroll to top position -->
+		<span>
+			<a class="target-anchor" id="top" title="Scroll to top"></a>
+			<amp-position-observer on="enter:hideAnim.start; exit:showAnim.start" layout="nodisplay"></amp-position-observer>
+		</span>
+		<!-- Sidebar button -->
+		<button on="tap:sidebar.open" class="btn btn-dark btn-sidebar"><i class="fas fa-anchor"></i></button>
         <header class="mega-menu">
         <div class="container">
         <div class="row">
@@ -105,6 +149,5 @@
         </div>
         </div>
         </header>
-    <h1>Hello World</h1>
   </body>
 </html>
